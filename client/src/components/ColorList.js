@@ -25,12 +25,12 @@ const ColorList = ({ colors, updateColors }) => {
     // think about where will you get the id from...
     // where is is saved right now?
     e.preventDefault();
-    console.log('the color is being edited', editing);
-    console.log('Color to edit ', colorToEdit);
+    // console.log('the color is being edited', editing);
+    // console.log('Color to edit ', colorToEdit);
     axiosWithAuth()
     .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         const edittedColors = colors.map(color => {
           if (color.id === response.data.id) {
             return {
@@ -43,6 +43,7 @@ const ColorList = ({ colors, updateColors }) => {
           }
         })
         updateColors(edittedColors);
+        setEditing(false);
       })
       .catch(error => {
         console.log(error);
